@@ -79,5 +79,17 @@ body, button, input, textarea, select { font-family: 'DFKai-SB', 'BiauKai', '標
 .hero-art{filter:none!important;}
 @media(max-width:599px){.phone,.scene{overflow:hidden;} .hero-art{max-height:100%;}}
 
-/* V8: 目錄文字從紅色上端圓點下方開始 */
-.drawer-links{top:calc(6.2% + 10px)}
+/* 目錄紅線：上方定位基準 */
+.drawer {
+    --line-start: 6.2%;
+}
+
+/* 紅色直線 */
+.drawer-line {
+    top: var(--line-start);
+}
+
+/* 六個選單文字 */
+.drawer-links {
+    top: calc(var(--line-start) + 3%);
+}
