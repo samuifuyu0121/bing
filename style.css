@@ -1,0 +1,80 @@
+:root{font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;color:#d12450}*{box-sizing:border-box}body{margin:0;background:#102de5}.phone{max-width:440px;margin:auto;min-height:100dvh;background:#00ecea;overflow:hidden}.status{height:48px;background:#1945f7;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;font-size:10px;letter-spacing:3px}.status span{font-size:10px;letter-spacing:0}.scene{position:relative;min-height:calc(100dvh - 48px);background:radial-gradient(ellipse 80% 48% at 50% 43%,#0076f9 0%,#00b9f4 59%,#00eee7 100%);overflow:hidden}header{height:62px;display:flex;justify-content:space-between;align-items:center;padding:0 24px;position:relative;z-index:3}header button{border:0;background:none;color:#d12450;font-size:29px;cursor:pointer;width:40px}.back{visibility:hidden}.brand{font-size:14px;letter-spacing:5px}.home{min-height:calc(100dvh - 110px);display:flex;flex-direction:column;justify-content:space-between}.hero{position:relative;flex:1;min-height:360px;display:flex;align-items:center;justify-content:center}.halo{position:absolute;width:110%;height:92%;border-radius:50%;background:radial-gradient(ellipse,#1346ff 4%,#0b85fb 43%,transparent 72%);filter:blur(16px)}.bigtype{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.9;transform:rotate(-3deg);filter:blur(3.1px) drop-shadow(0 0 11px #fff8);color:white;font-weight:1000;font-family:'Arial Black','Noto Sans TC',sans-serif}.bigtype span:nth-child(1),.bigtype span:nth-child(2){font-size:clamp(145px,41vw,194px);letter-spacing:-22px}.bigtype span:nth-child(2){margin-top:-25px}.bigtype span:nth-child(3){font-size:clamp(175px,49vw,226px);margin-top:-30px}.side{position:absolute;z-index:2;writing-mode:vertical-rl;font-size:17px;letter-spacing:6px;line-height:1.4}.side.left{left:12%;top:9%}.side.right{right:8%;bottom:5%}.bottom{position:relative;z-index:2;text-align:center;padding:10px 8% 25px}.bottom p{color:#1748e7;font-family:serif;font-size:27px;letter-spacing:4px;line-height:1.55;margin:0 0 23px}.bottom strong{font-weight:400;font-size:23px}.primary{border:1.5px solid #1748f7;background:#e1f7f6;color:#d12450;border-radius:50px;padding:16px;width:100%;font-size:22px;letter-spacing:5px;cursor:pointer;box-shadow:0 6px 0 #1539e122;transition:transform .2s,background .2s}.primary:active{transform:scale(.96);background:white}.bottom small{display:block;margin-top:19px;color:#1251c6;font-size:9px;letter-spacing:3px}.hidden{display:none!important}.joke{min-height:calc(100dvh - 110px);display:flex;flex-direction:column;justify-content:space-between;position:relative;padding:25px 8% 38px}.joke-bg{position:absolute;font-size:350px;font-weight:1000;color:#fff9;filter:blur(7px);left:50%;top:14%;transform:translateX(-50%);pointer-events:none}.joke-content{z-index:1;position:relative;padding-top:50px}.eyebrow{font-size:11px;color:#1748e7;letter-spacing:3px}.joke h1{font-family:serif;font-size:clamp(24px,7vw,32px);font-weight:400;letter-spacing:4px;margin:38px 0 0}.dots{font-size:24px;line-height:1.1;margin:0 0 0 3px}.answer{font-family:serif;font-size:30px;min-height:48px;margin:12px 0;color:#d12450}.joke-actions{z-index:1}.joke-actions p{color:#1748e7;text-align:right;letter-spacing:2px;font-size:11px}.action-row{display:flex;gap:12px;align-items:center}.action-row button{border:0;cursor:pointer}.heart,.next{background:transparent;color:white;font-size:40px}.share{flex:1;border-radius:10px;background:white;color:#1748e7;font-size:16px;letter-spacing:4px;padding:12px}.next{font-size:32px}.overlay{position:absolute;inset:0;background:#0734a366;z-index:7}.drawer{position:absolute;inset:0 24% 0 0;z-index:8;background:#d7f8f9;transform:translateX(-110%);transition:transform .3s;display:flex;flex-direction:column;padding:32px 35px;gap:14px;box-shadow:8px 0 30px #043c7a44}.drawer.open{transform:translateX(0)}.drawer-title{color:#1748e7;font-weight:bold;letter-spacing:5px;margin-bottom:28px;display:flex;justify-content:space-between}.drawer-title button{border:0;background:none;color:#d12450;font-size:26px}.drawer>button{background:none;border:0;text-align:left;color:#1748e7;letter-spacing:5px;font-size:17px;padding:12px 0;cursor:pointer}.drawer-foot{margin-top:auto;font-size:10px;letter-spacing:2px;color:#d12450}.toast{position:absolute;bottom:35px;left:50%;transform:translateX(-50%) translateY(30px);background:#1643ee;color:white;padding:12px 20px;border-radius:30px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap;z-index:10}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media(min-width:600px){body{padding:24px}.phone{min-height:calc(100dvh - 48px);border-radius:24px;box-shadow:0 20px 70px #0005}.scene{min-height:750px}.home,.joke{min-height:688px}.hero{min-height:410px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+
+/* V3：透明字圖獨立置中，底色由 CSS 繪製 */
+.scene{background:radial-gradient(ellipse 78% 43% at 50% 40%,#1747ff 0%,#078fff 48%,#05c6f1 73%,#00e9e8 100%)}
+.hero{min-height:0;isolation:isolate;overflow:visible}
+.hero-art{display:block;position:relative;z-index:0;width:min(95%,410px);height:100%;max-height:100%;object-fit:contain;object-position:center;pointer-events:none;filter:blur(.6px)}
+.hero .side{z-index:2}
+@media(max-width:440px){.hero-art{width:100%;height:100%;object-fit:contain}}
+
+/* V4: 緊湊手機首頁，無假狀態列；生成頁與目錄冷笑話分離 */
+body{background:#102de5}
+.phone{max-width:420px;min-height:0}
+.scene{min-height:0;background:radial-gradient(ellipse 85% 43% at 50% 40%,#1747ff 0%,#078fff 48%,#05c6f1 73%,#00e9e8 100%)}
+header{height:48px;padding:0 20px}
+.home{height:min(780px,100svh - 48px);min-height:570px;justify-content:initial}
+.hero{flex:1;min-height:0;max-height:none}
+.hero-art{height:100%;width:100%;object-fit:contain;object-position:center;filter:none}
+.side{font-size:14px;letter-spacing:4px}
+.side.left{left:11%;top:12%}
+.side.right{right:8%;bottom:7%}
+.bottom{flex:none;padding:4px 8% 23px}
+.bottom p{font-size:23px;line-height:1.5;margin:0 0 14px}
+.bottom strong{font-size:20px}
+.primary{padding:12px;font-size:18px}
+.bottom small{margin-top:12px;font-size:8px}
+.joke,.generated{min-height:calc(min(780px,100svh) - 48px)}
+.generated{padding:32px 8% 40px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.gen-label{text-align:center;color:#1748e7;font-size:11px;letter-spacing:3px}
+.gen-card{background:#efffffeb;border:1.5px solid #1747ff;border-radius:24px;min-height:300px;padding:25px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;box-shadow:0 14px 40px #1049b533;text-align:center}
+.gen-snow{font-size:32px;color:#1747ff}
+.gen-card h1{font-size:26px;line-height:1.6;color:#d12450;font-weight:500;margin:0}
+.gen-divider{height:2px;width:55px;background:#1747ff}
+.gen-card p{font-size:27px;line-height:1.5;color:#1747ff;margin:0}
+.gen-controls{display:grid;gap:12px}
+.gen-controls button{padding:14px;border-radius:35px;border:1.5px solid #1747ff;background:#f1ffff;color:#1747ff;font-size:17px;cursor:pointer}
+.gen-controls button:first-child{background:#1747ff;color:white}
+@media(min-width:600px){body{padding:14px}.phone{min-height:0;border-radius:22px}.scene{min-height:0}.home{height:730px;min-height:0}.hero{min-height:0}.joke,.generated{min-height:682px}}
+@media(max-height:650px){.home{min-height:0;height:calc(100svh - 48px)}.bottom p{font-size:20px;margin-bottom:8px}.bottom strong{font-size:18px}.primary{padding:10px}}
+
+/* V5｜復古標楷體：所有可編輯的網頁文字；PNG 主視覺維持原樣 */
+:root { font-family: 'DFKai-SB', 'BiauKai', '標楷體', 'KaiTi', 'Kaiti TC', 'STKaiti', serif; }
+body, button, input, textarea, select { font-family: 'DFKai-SB', 'BiauKai', '標楷體', 'KaiTi', 'Kaiti TC', 'STKaiti', serif; }
+.bottom p, .joke h1, .answer { font-family: inherit; }
+/* 使用手機可視高度，避免螢幕尺寸差異造成過長；保留既有布局 */
+@media (max-width: 599px) {
+  .home { height: calc(100svh - 48px); min-height: 0; }
+  .hero { min-height: 0; }
+  .hero-art { max-height: 100%; }
+  .bottom { padding-bottom: max(15px, env(safe-area-inset-bottom)); }
+}
+
+/* V6：依作者原稿還原左側目錄；取消先前制式抽屜樣式 */
+.drawer{inset:0 24% 0 0;width:76%;background:#d6f7f8;box-shadow:none;padding:0;gap:0;display:block;overflow:hidden;transform:translateX(-105%);z-index:8}
+.drawer.open{transform:translateX(0)}
+.drawer-close{position:absolute;right:10px;top:8px;border:0;background:transparent;color:#d12450;font-size:27px;cursor:pointer;z-index:2}
+.drawer-line{position:absolute;left:10%;top:6.2%;bottom:26%;width:1px;background:#d12450}
+.drawer-line::before,.drawer-line::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#d12450}
+.drawer-line::before{top:0}.drawer-line::after{bottom:0}
+.drawer-links{position:absolute;left:27%;right:6%;top:5%;display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.drawer .drawer-links button{display:block;border:0;background:transparent;color:#1746ff;font-size:clamp(13px,3.8vw,17px);letter-spacing:.35em;white-space:nowrap;text-align:left;padding:0;margin:0 0 clamp(27px,5.6vh,49px);cursor:pointer;font-family:'DFKai-SB','BiauKai','標楷體','KaiTi',serif}
+.drawer-circles{position:absolute;bottom:6.5%;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.drawer-circles span{width:27px;height:27px;border:1px solid #d12450;border-radius:50%}
+/* 目錄開啟時，右側保留原頁面的半透明背景 */
+.overlay{background:rgba(10,70,150,.38)}
+/* 後續頁面用作者提供的「涼」字圖，不拉伸或裁切 */
+.joke-bg{font-size:0;left:50%;top:11%;width:100%;height:70%;transform:translateX(-50%);background:url('./cool-title.webp') center/contain no-repeat;filter:blur(3px);opacity:.7}
+@media(min-width:600px){.drawer .drawer-links button{font-size:16px;margin-bottom:37px}.drawer-line{bottom:25%}}
+
+/* V7: 文字實際可見部分約佔畫面中央 70% 寬度 */
+.hero{display:flex;align-items:center;justify-content:center;}
+.hero-art,.hero-art:is(img){position:relative;inset:auto;width:70%;max-width:none;height:100%;max-height:100%;object-fit:contain;object-position:center;flex:none;filter:none;}
+/* 涼字同樣以 70% 寬度呈現，保留在笑話內容後方 */
+.joke-bg{left:50%;top:50%;bottom:auto;right:auto;width:70%;height:70%;transform:translate(-50%,-50%);background-image:url('./cool-title.webp');background-position:center;background-size:contain;background-repeat:no-repeat;opacity:.65;filter:blur(2px);}
+@media(max-width:440px){.hero-art,.hero-art:is(img){width:70%;height:100%;}}
+
+/* 手機效能與位置優化 */
+.joke-bg{left:58%;top:43%;filter:none;opacity:.65;}
+.hero-art{filter:none!important;}
+@media(max-width:599px){.phone,.scene{overflow:hidden;} .hero-art{max-height:100%;}}
