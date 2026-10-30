@@ -1,8 +1,5 @@
-舒潔水啦｜手機優先、電腦相容修正版
-
-本包不含圖片。請保留 GitHub 原本的 sujie 資料夾。
-將 index.html、style.css、app.js 覆蓋至 GitHub Pages 的根目錄。
-
-調整：桌面寬度 >= 600px 時，將手機版置中，以 390px 畫布呈現，避免圖片與文字被拉爆；修正選單定位與結果頁文字尺寸。手機版原配置保留。
-
-尚未完成瀏覽器實機驗證。
+舒潔水啦：電腦版爆版緊急修復
+請把 index.html、style.css、app.js 三個檔案放在 GitHub Pages 目前使用的資料夾根目錄（網址 /bing/ 通常對應 bing 儲存庫根目錄），並保留 sujie 圖片資料夾。
+這次在 HTML 加入保底版型及 CSS 快取版本碼，避免舊 CSS 或 CSS 失效時圖片無限放大。
+請確認 GitHub Pages 的 Source 為 main / (root)，並等部署完成後使用 Ctrl+Shift+R 強制重整。
+若仍爆版，請用瀏覽器 F12 > Network 確認 style.css 是否為 200 而非 404。
