@@ -776,3 +776,18 @@ main{display:contents;}
 
 /* Mobile: avoid costly per-particle shadow compositing during the tissue transition. */
 .tissue-fall-overlay .falling-tissue{filter:none;will-change:transform}
+
+/* 2026-11-19: Homepage footer reaches the bottom of the visible viewport.
+   Scope strictly to home; preserve artwork and all transition animations. */
+.site:has(#home.active):not(.join-page-sliding) #home.home.active {
+  min-height:calc(100dvh - 82px)!important;
+}
+.site:has(#home.active):not(.join-page-sliding) #home .home-footer {
+  flex-grow:1!important;
+  background:#fff45b!important;
+}
+@media(max-width:390px){
+  .site:has(#home.active):not(.join-page-sliding) #home.home.active {
+    min-height:calc(100dvh - 78px)!important;
+  }
+}

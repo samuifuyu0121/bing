@@ -136,6 +136,13 @@ function runPageRainSlide(sourceId,targetId,button){
       {transform:'translate3d(0,0,0)'},
       {transform:`translate3d(0,-${travelHeight}px,0)`}
     ],slideOptions);
+    // Only the home -> nickname transition fades the outgoing homepage.
+    // Keep the slide and rain timings exactly as before.
+    const homeFade=sourceId==='home' ? home.animate([
+      {opacity:1,offset:0},
+      {opacity:1,offset:.18},
+      {opacity:0,offset:1}
+    ],{duration:slideMs,easing:'linear',fill:'forwards'}) : null;
     const nextSlide=next.animate([
       {transform:`translate3d(0,${travelHeight}px,0)`},
       {transform:'translate3d(0,0,0)'}
@@ -177,12 +184,14 @@ function runPageRainSlide(sourceId,targetId,button){
           site.classList.add('game-page-settled');
           document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='thread'));
           homeSlide.cancel();nextSlide.cancel();
+          if(homeFade)homeFade.cancel();
           site.classList.remove('join-page-sliding','game-page-sliding');
           closeMenu();
         }else{
           page(targetId);
           site.classList.remove('join-page-sliding','game-page-sliding');
           homeSlide.cancel();nextSlide.cancel();
+          if(homeFade)homeFade.cancel();
         }
         animations.forEach(a=>a.cancel());
         layer.remove();button.classList.remove('is-pressed');rainTransitioning=false;
