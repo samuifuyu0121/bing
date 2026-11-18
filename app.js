@@ -48,7 +48,7 @@ function runTissuePileTransition(button){
     for(let col=0;col<cols;col++){
       const img=document.createElement('img');
       img.className='falling-tissue';
-      img.src='sujie/紙球.png';
+      img.src='sujie/紙球_轉場.webp';
       img.alt='';
       const size=88+Math.random()*88;
       const x=(col-1)*stepX+(row%2)*stepX*.48+(Math.random()-.5)*20;
@@ -70,7 +70,7 @@ function runTissuePileTransition(button){
   // Extra pieces fill the gaps, still falling from the very top.
   for(let i=0;i<Math.ceil(cols*rows*.5);i++){
     const img=document.createElement('img');
-    img.className='falling-tissue';img.src='sujie/紙球.png';img.alt='';
+    img.className='falling-tissue';img.src='sujie/紙球_轉場.webp';img.alt='';
     const size=88+Math.random()*88;
     const x=Math.random()*(width+size)-size*.5;
     const endY=Math.random()*height-size*.35;

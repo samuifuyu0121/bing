@@ -773,3 +773,6 @@ main{display:contents;}
 .tissue-fall-overlay{position:absolute;inset:0;z-index:1000;overflow:hidden;pointer-events:none;background:transparent}
 .tissue-fall-overlay .falling-tissue{position:absolute;display:block;max-width:none;object-fit:contain;will-change:transform,opacity;filter:drop-shadow(0 3px 3px rgba(40,40,40,.11))}
 /* No fade: the entire tissue pile exits below the viewport. */
+
+/* Mobile: avoid costly per-particle shadow compositing during the tissue transition. */
+.tissue-fall-overlay .falling-tissue{filter:none;will-change:transform}
