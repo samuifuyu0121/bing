@@ -31,7 +31,7 @@
 .home .t1{left:-9%;top:3%;width:44%;transform:rotate(-18deg)}
 .home .t2{right:-10%;top:3%;width:54%;transform:rotate(16deg)}
 .home .t3{left:-8%;bottom:0;width:59%;transform:rotate(-8deg)}
-.home .t4{right:-2%;bottom:13%;width:37%;transform:rotate(14deg)}
+
 .home .c1{right:0;top:0;width:39%;transform:rotate(-12deg)}
 .home .c2{left:-8%;top:46%;width:39%;transform:rotate(17deg)}
 .home .c3{left:3%;bottom:6%;width:39%;transform:rotate(8deg)}
@@ -107,42 +107,669 @@ body{background:#243b3d}
 .logo img{width:100%;height:100%;object-fit:contain}
 .page:not(.active){display:none!important}
 @media(min-width:600px){.site{width:390px}.hero-title{font-size:64px}.nickname .decor{height:600px}}
-/* =====================================
-   修正漢堡選單：預設隱藏
-===================================== */
 
-.menu {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: min(85vw, 320px);
-    height: 100dvh;
-    z-index: 9999;
 
-    transform: translateX(-110%) !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+/* 2026-11 新版首頁：手機優先，其他頁面維持原樣 */
+.site{width:100%;max-width:390px;margin-inline:auto;overflow:hidden}
+.status{height:30px;padding:0;align-items:center;font-size:10px;letter-spacing:1px}
+.header{height:52px;padding:4px 7%;}
+.logo{width:48px;height:39px}
+.home{background:#ffff91;min-height:0;padding-bottom:38px}
+.home .hero-area{height: min(390px, 108vw);min-height:320px;max-height:440px;background:repeating-linear-gradient(174deg,rgba(255,255,255,.8) 0 1px,transparent 1px 4px);}
+.home .hero-title{position:absolute;inset:auto;left:5%;top:20%;width:90%;height:auto;display:block;transform:none;z-index:3;margin:0;line-height:0}
+.home .hero-title img{width:100%;height:auto;display:block;max-width:100%;filter:none}
+.home .tissue{z-index:1}
+.home .t1{left:-13%;top:0;width:48%}
+.home .t2{right:-15%;top:4%;width:53%}
+.home .t3{left:-17%;bottom:-5%;width:56%}
 
-    transition: transform 0.3s ease,
-                visibility 0.3s ease;
+.home .comment{display:none}
+.home .join{height:44px;width:76%;font-size:19px;border:2px solid #111;margin: -8px auto 18px;position:relative;z-index:4;background:#ffffdf}
+.menu{visibility:hidden;pointer-events:none;transform:translateX(-110%)}
+.menu.open,.menu.active,.menu.show{visibility:visible;pointer-events:auto;transform:translateX(0)}
+@media(min-width:600px){.site{width:390px}.home .hero-title{font-size:inherit}}
+
+
+/* 2026-11-19 首頁視覺與底部導覽修復：只影響首頁 */
+.home.active{display:flex!important;flex-direction:column;min-height:calc(100svh - 82px);padding-bottom:0!important;overflow:hidden}
+.home .hero-area{flex:none!important;height:clamp(330px,95vw,405px)!important;min-height:0!important;max-height:none!important;position:relative;isolation:isolate;overflow:hidden;background:repeating-linear-gradient(176deg,rgba(255,255,255,.9) 0px,rgba(255,255,255,.9) 1px,transparent 1px,transparent 4px)}
+.home .hero-title{left:5%;top:19%;width:90%;z-index:3}
+.home .tissue{z-index:2;object-fit:contain;max-width:none!important;filter:none}
+.home .t1{left:-17%;top:-12%;width:61%;transform:rotate(-18deg)}
+.home .t2{right:-19%;top:-9%;width:61%;transform:rotate(17deg)}
+.home .t3{left:-19%;bottom:-19%;width:57%;transform:rotate(8deg)}
+
+.home .raindrop{position:absolute;z-index:4;width:12px;height:18px;background:#00a9e3;border-radius:65% 65% 65% 65%;clip-path:path('M 6 0 C 4 5 0 10 0 13 A 6 6 0 0 0 12 13 C 12 10 8 5 6 0 Z');pointer-events:none}
+.home .rain1{left:13%;top:5%;transform:scale(.7)}.home .rain2{left:45%;top:3%;transform:scale(1.1)}.home .rain3{left:76%;top:9%;transform:scale(.85)}
+.home .rain4{left:5%;top:51%;transform:scale(1.1)}.home .rain5{left:41%;top:48%;transform:scale(.75)}.home .rain6{left:87%;top:52%;transform:scale(1.15)}
+.home .rain7{left:17%;top:73%;transform:scale(.9)}.home .rain8{left:53%;top:77%;transform:scale(1.2)}.home .rain9{left:73%;top:88%;transform:scale(.7)}
+.home .rain10{left:33%;top:91%;transform:scale(.7)}.home .rain11{left:61%;top:13%;transform:scale(.7)}
+.home .join{flex:none!important;margin:0 auto 0!important;width:76%;height:52px!important;border:2px solid #111;border-radius:100px;background:#ffffe0;position:relative;z-index:5;transition:transform .14s ease,background .14s ease,box-shadow .14s ease;touch-action:manipulation}
+.home .join:active,.home .join.is-pressed{transform:scale(.94);background:#c8f4fa;box-shadow:inset 0 3px 7px #0002}
+.home .join:focus-visible{outline:3px solid #168ab2;outline-offset:3px}
+.home-footer{background:#fff55c;min-height:170px;width:100%;margin-top:22px;padding:28px 7% 32px;flex:none;position:relative;z-index:2}
+.home-footer .footer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 12px}
+.home-footer button{background:none;border:0;padding:0;color:#3d371c;text-align:left;font-size:11px;line-height:1.6;white-space:nowrap}
+.home-footer button:active{opacity:.55}
+@media(max-width:350px){.home .hero-area{height:clamp(300px,95vw,355px)!important}.home-footer{padding-inline:6%}.home-footer button{font-size:10px}}
+@media(min-width:600px){.site{width:390px;max-width:390px}}
+@media(prefers-reduced-motion:reduce){.home .join{transition:none}}
+
+/* ==========================================================
+   2026-11-19 首頁視覺修正｜保留其他頁面與原有 JS
+   首頁底紋延伸到按鈕後方，footer 隨 viewport 貼底
+========================================================== */
+html,body{min-height:100%;}
+.site{min-height:100svh;}
+main{display:contents;}
+.home.active{
+  display:flex!important;
+  flex-direction:column!important;
+  min-height:calc(100svh - 82px)!important;
+  height:auto!important;
+  background:#ffff91 url('sujie/底紋.png') center top / 100% auto repeat-y!important;
+  overflow:hidden;
+}
+.home .hero-area{
+  flex:1 0 auto!important;
+  height:auto!important;
+  min-height:max(330px,calc(100svh - 82px - 170px - 74px))!important;
+  background:transparent!important;
+  overflow:hidden;
+  isolation:isolate;
+}
+.home .hero-area::before{content:none!important;}
+.home .hero-title{inset:auto!important;left:7%!important;top:17%!important;width:86%!important;transform:none!important;z-index:3;}
+.home .hero-title img{display:block;width:100%;height:auto;max-width:100%;}
+.home .tissue{position:absolute!important;height:auto!important;object-fit:contain;filter:none!important;z-index:2;}
+.home .t1{left:-23%!important;top:-10%!important;width:70%!important;transform:rotate(-17deg)!important;}
+.home .t2{right:-19%!important;top:0%!important;width:53%!important;transform:rotate(29deg)!important;}
+.home .t3{left:-22%!important;bottom:-13%!important;width:60%!important;transform:rotate(15deg)!important;}
+
+.home .raindrop{position:absolute!important;display:block!important;background:none!important;clip-path:none!important;border-radius:0!important;height:auto!important;object-fit:contain;z-index:4;pointer-events:none;}
+.home .rain1{left:12%!important;top:4%!important;width:11px!important;transform:rotate(-8deg)!important;}
+.home .rain2{left:46%!important;top:5%!important;width:19px!important;transform:rotate(10deg)!important;}
+.home .rain3{left:75%!important;top:11%!important;width:13px!important;transform:rotate(-10deg)!important;}
+.home .rain4{left:6%!important;top:48%!important;width:18px!important;transform:rotate(14deg)!important;}
+.home .rain5{left:42%!important;top:51%!important;width:10px!important;transform:rotate(-6deg)!important;}
+.home .rain6{left:89%!important;top:57%!important;width:17px!important;transform:rotate(8deg)!important;}
+.home .rain7{left:19%!important;top:75%!important;width:12px!important;transform:rotate(-13deg)!important;}
+.home .rain8{left:55%!important;top:80%!important;width:20px!important;transform:rotate(6deg)!important;}
+.home .rain9{left:78%!important;top:89%!important;width:9px!important;transform:rotate(12deg)!important;}
+.home .rain10{left:35%!important;top:93%!important;width:12px!important;transform:rotate(-7deg)!important;}
+.home .rain11{left:62%!important;top:19%!important;width:9px!important;transform:rotate(4deg)!important;}
+.home .join{flex:0 0 52px!important;margin:0 auto 22px!important;width:76%!important;height:52px!important;}
+.home-footer{margin-top:auto!important;flex:0 0 170px!important;min-height:170px!important;background:#fff45b!important;padding:28px 7% 32px!important;}
+@media(max-width:350px){.home .hero-area{min-height:330px!important;}}
+@media(min-width:600px){.site{width:390px!important;max-width:390px!important;}}
+
+/* 首頁第五顆紙球、完整露出、雨滴不旋轉、標準字最上層 */
+.header{padding-left:2%!important;}
+.header .logo{margin-left:0!important;}
+.home .hero-area{overflow:visible!important;}
+.home .hero-title{z-index:20!important;pointer-events:none;}
+.home .hero-title img{position:relative;z-index:20;}
+.home .tissue{z-index:2!important;transform:none!important;object-fit:contain!important;max-width:none!important;}
+/* 五顆完整置於主視覺內，彼此尺寸和位置不同 */
+.home .t1{left:0%!important;right:auto!important;top:1%!important;bottom:auto!important;width:34%!important;}
+.home .t2{left:auto!important;right:0%!important;top:3%!important;bottom:auto!important;width:43%!important;}
+.home .t3{left:1%!important;right:auto!important;top:auto!important;bottom:1%!important;width:39%!important;}
+
+
+.home .raindrop{z-index:5!important;transform:none!important;rotate:none!important;}
+/* 雨滴集中在標準字以外的留白，保留原始朝向 */
+.home .rain1{left:30%!important;top:4%!important;width:10px!important;}
+.home .rain2{left:59%!important;top:7%!important;width:17px!important;}
+.home .rain3{left:81%!important;top:43%!important;width:11px!important;}
+.home .rain4{left:6%!important;top:45%!important;width:16px!important;}
+.home .rain5{left:44%!important;top:5%!important;width:9px!important;}
+.home .rain6{left:92%!important;top:65%!important;width:14px!important;}
+.home .rain7{left:24%!important;top:79%!important;width:10px!important;}
+.home .rain8{left:61%!important;top:83%!important;width:19px!important;}
+.home .rain9{left:78%!important;top:92%!important;width:9px!important;}
+.home .rain10{left:42%!important;top:94%!important;width:12px!important;}
+.home .rain11{left:7%!important;top:69%!important;width:8px!important;}
+
+/* 2026-11-19: 依照新版參考圖，以主視覺百分比定位 */
+.home .hero-area{position:relative!important;isolation:isolate;overflow:visible!important;}
+/* 標準字加大約 15%，位置略向上；最上層 */
+.home .hero-title{left:1%!important;top:15%!important;width:98%!important;z-index:30!important;}
+.home .hero-title img{width:100%!important;height:auto!important;}
+/* 五顆紙球：左上、右上、左下、右側中段、右下。座標及大小均隨主視覺比例變化。 */
+.home .tissue{position:absolute!important;height:auto!important;max-width:none!important;object-fit:contain!important;z-index:2!important;transform:none!important;}
+.home .t1{left:0%!important;top:0%!important;right:auto!important;bottom:auto!important;width:29%!important;}
+.home .t2{right:0%!important;top:4%!important;left:auto!important;bottom:auto!important;width:37%!important;}
+.home .t3{left:0%!important;top:49%!important;right:auto!important;bottom:auto!important;width:42%!important;}
+
+
+/* 水滴直立，位於標準字後層，字永遠不被蓋住 */
+.home .raindrop{transform:none!important;rotate:none!important;z-index:4!important;}
+
+/* 2026-11-19 更新：首頁頂部與主視覺共用同一張底紋 */
+.site:has(.home.active){background:#ffff91 url("sujie/底紋.png") center 30px / 100% auto repeat-y!important;}
+.site > .header{background:transparent!important;padding-left:8px!important;padding-right:8px!important;}
+.site:has(.home.active) .home.active{background:transparent!important;}
+.site:has(.home.active) .home .hero-area{background:transparent!important;}
+.site:has(.home.active) .home-footer{background:#fff45b!important;}
+/* 五顆紙球保留百分比定位，可分別旋轉 */
+.home .t1{transform:rotate(-18deg)!important;}
+.home .t2{transform:rotate(16deg)!important;}
+.home .t3{transform:rotate(-12deg)!important;}
+
+
+/* 水滴維持原始方向，最小顆維持 8px，最大顆由 19px 增至 27px */
+.home .raindrop{transform:none!important;rotate:none!important;}
+.home .rain1{width:12px!important;}
+.home .rain2{width:24px!important;}
+.home .rain3{width:14px!important;}
+.home .rain4{width:22px!important;}
+.home .rain5{width:11px!important;}
+.home .rain6{width:19px!important;}
+.home .rain7{width:13px!important;}
+.home .rain8{width:27px!important;}
+.home .rain9{width:11px!important;}
+.home .rain10{width:16px!important;}
+.home .rain11{width:8px!important;}
+
+/* 2026-11-19：依紅色標記調整五顆紙球位置，採主視覺百分比座標 */
+.home .t1{left:2%!important;top:5%!important;right:auto!important;bottom:auto!important;width:30%!important;transform:rotate(-18deg)!important;}
+.home .t2{left:auto!important;right:4%!important;top:9%!important;bottom:auto!important;width:36%!important;transform:rotate(16deg)!important;}
+.home .t3{left:-6%!important;top:49%!important;right:auto!important;bottom:auto!important;width:42%!important;transform:rotate(-12deg)!important;}
+
+
+/* 頁尾三欄文字水平置中 */
+.home-footer .footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}
+.home-footer .footer-grid button{text-align:center!important;justify-self:stretch!important;}
+
+/* 2026-11-19 紙球 1 / 2：以主視覺寬度百分比定位 */
+.home .t1{left:-20%!important;top:-8%!important;right:auto!important;bottom:auto!important;width:60%!important;transform:rotate(-18deg)!important;z-index:2!important;}
+.home .t2{left:auto!important;right:-7%!important;top:5%!important;bottom:auto!important;width:72%!important;transform:rotate(16deg)!important;z-index:35!important;}
+/* 只讓第二顆在標準字上層，其餘三顆維持原設定 */
+.home .hero-area{overflow:hidden!important;}
+
+/* 2026-11-19 紙球 2/3/4 微調 */
+/* 2號：向右 10px、向上 10px */
+.home .t2{right:calc(-7% - 10px)!important;top:calc(5% - 10px)!important;}
+/* 3號：在原大小基礎上增加 50%（42% → 63%） */
+.home .t3{width:63%!important;}
+/* 4號：放大一倍（28% → 56%），旋轉 30 度 */
+
+
+
+/* 2026-11-19：依照最新需求調整主視覺 */
+/* 以標準字的水平中心對齊整組雨滴，放在標準字下層 */
+.home .hero-area::after{
+ content:"";position:absolute;left:50%;top:0;width:100%;height:100%;
+ transform:translateX(-50%);background:url("sujie/雨滴排版.png") center center / 100% 100% no-repeat;
+ z-index:5;pointer-events:none;
+}
+.home .raindrop{display:none!important;}
+.home .hero-title{z-index:30!important;}
+/* 2號：在上一版位置再向右20px、向上20px */
+.home .t2{right:calc(-7% - 30px)!important;top:calc(5% - 30px)!important;z-index:35!important;}
+/* 3號：向左20px，大小保持1.5倍 */
+.home .t3{left:calc(-6% - 20px)!important;width:63%!important;}
+/* 5號：下半部由 footer 遮住，形成被切掉約一半的效果 */
+.home .hero-area{overflow:visible!important;}
+
+.home .join{position:relative;z-index:36!important;}
+.home-footer{position:relative!important;z-index:40!important;background:#fff45b!important;}
+
+/* 2026-11-19 修正：雨滴圖保持原始比例，不再拉伸 */
+.home .hero-area::after{
+  left:50%!important;
+  top:15%!important;
+  width:98%!important;
+  height:auto!important;
+  aspect-ratio:1230 / 963!important;
+  transform:translateX(-50%)!important;
+  background-image:url("sujie/雨滴排版.png")!important;
+  background-position:center center!important;
+  background-size:contain!important;
+  background-repeat:no-repeat!important;
+}
+/* 2號紙球：在上一版基礎上再往右10px、往上10px，逆時針15度 */
+.home .t2{
+  right:calc(-7% - 40px)!important;
+  top:calc(5% - 40px)!important;
+  transform:rotate(1deg)!important;
+}
+/* Footer：文字群組垂直置中，上下留白一致 */
+.home-footer{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 7%!important;
+}
+.home-footer .footer-grid{
+  width:100%!important;
+  align-content:center!important;
 }
 
-/* 點擊漢堡按鈕才開啟 */
-.menu.open,
-.menu.active,
-.menu.show {
-    transform: translateX(0) !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
+/* 2026-11-19 紙球 2、3、5 微調：其餘維持原樣 */
+.home .t2{right:calc(-7% - 37px)!important;top:calc(5% - 37px)!important;}
+.home .t3{left:calc(-6% - 25px)!important;top:calc(49% - 15px)!important;}
+
+
+/* 2026-11-19 最新微調：5號右移10px；雨滴排版縮小30%，保持原比例 */
+
+.home .hero-area::after{width:68.6%!important;aspect-ratio:1230 / 963!important;background-size:contain!important;}
+
+/* 2026-11-19：更換標準字，移除「底」雨滴排版，紙球 4 / 5 微調 */
+.home .hero-area::after{content:none!important;display:none!important;background-image:none!important;}
+
+
+
+/* Verified correction: tissue 4 rotation; tissue 5 +10px from previous -10px */
+
+
+
+
+/* 最終紙球定位：4號旋轉180度，5號比上一版再向右10px */
+.home .hero-area > img.tissue.t4 {
+ left:auto!important;right:-3%!important;top:48%!important;bottom:auto!important;
+ width:56%!important;transform:rotate(45deg)!important;transform-origin:center center!important;
+}
+.home .hero-area > img.tissue.t5 {
+ left:auto!important;right:calc(1% - 50px)!important;top:88%!important;bottom:auto!important;
+ width:62%!important;transform:rotate(-24deg)!important;transform-origin:center center!important;
 }
 
-/* 選單背景遮罩 */
-.menu-shade {
-    display: none;
+/* 2026-11-19 final override: 4 clockwise 45deg, 5 moves 10px right */
+.home .hero-area > img.tissue.t4 { transform:rotate(45deg)!important; }
+.home .hero-area > img.tissue.t5 { right:calc(1% - 50px)!important; }
+
+/* 2026-11-19: 紙球4從45度再順時針45度，總角度90度 */
+.home .hero-area > img.tissue.t4 { transform:rotate(90deg)!important; }
+/* 使用原始底(2)圖片，等比例縮放、不裁切、不拉伸；置於所有首頁裝飾之上 */
+.home .hero-area > img.top-rain-overlay {
+ position:absolute!important;top:0!important;left:0!important;right:auto!important;bottom:auto!important;
+ display:block!important;width:100%!important;height:auto!important;max-width:none!important;
+ object-fit:contain!important;transform:none!important;z-index:999!important;pointer-events:none!important;
 }
 
-.menu-shade.open,
-.menu-shade.active,
-.menu-shade.show {
-    display: block;
+/* 2026-11-19 紙球微調：4號縮小20%、右移10px；五顆柔和陰影 */
+.home .hero-area > img.tissue.t4 {
+  width:44.8%!important; /* 原本56% × 0.8 */
+  right:calc(-3% - 10px)!important;
+  transform:rotate(90deg)!important;
 }
+.home .hero-area > img.tissue.t1,
+.home .hero-area > img.tissue.t2,
+.home .hero-area > img.tissue.t3,
+.home .hero-area > img.tissue.t4,
+.home .hero-area > img.tissue.t5 {
+  filter:drop-shadow(3px 7px 6px rgba(32,38,38,.23))!important;
+}
+
+/* 加入挑戰：雨滴由上往下落的轉場，不改動首頁原有雨滴位置 */
+.site{position:relative}
+.rain-transition{position:fixed;z-index:9999;top:0;bottom:0;left:50%;width:min(100%,390px);transform:translateX(-50%);overflow:hidden;pointer-events:none;isolation:isolate}
+.rain-transition-drop{position:absolute;top:-16vh;height:auto;object-fit:contain;transform:translateY(-20vh);animation:join-rain-fall 800ms linear both;will-change:transform;filter:drop-shadow(0 2px 1px rgba(0,95,145,.1))}
+@keyframes join-rain-fall{0%{transform:translateY(-20vh);opacity:0}8%{opacity:1}90%{opacity:1}100%{transform:translateY(125vh);opacity:0}}
+@media(prefers-reduced-motion:reduce){.rain-transition-drop{animation-duration:150ms!important}}
+
+/* 2026-11-19：選單覆蓋整個網站，不再被首頁紙球/標準字/按鈕蓋住 */
+.site{isolation:isolate}
+.site > .menu-shade{position:fixed!important;inset:0!important;z-index:20000!important;background:rgba(0,0,0,.45)!important}
+.site > .menu{position:fixed!important;top:0!important;bottom:0!important;z-index:20001!important;padding-top:72px!important}
+.site > .menu.open{visibility:visible!important;pointer-events:auto!important;transform:translateX(0)!important}
+.site > .menu:not(.open){visibility:hidden!important;pointer-events:none!important}
+.site > .menu .close-menu{z-index:1!important;top:12px!important}
+/* 下雨過場：每顆雨滴有不同起始高度、落速與左右飄移，不旋轉、不變形 */
+.rain-transition-drop{top:var(--rain-start,-20vh)!important;animation-name:join-rain-fall-scattered!important;animation-timing-function:linear!important;animation-fill-mode:both!important;transform:none!important}
+@keyframes join-rain-fall-scattered{0%{transform:translate3d(0,-8vh,0);opacity:0}5%{opacity:1}65%{opacity:1}100%{transform:translate3d(var(--rain-drift,0px),145vh,0);opacity:0}}
+
+/* 恢復可見的雨滴轉場：起點接近畫面頂端，快慢差距明顯 */
+.rain-transition-drop{top:-12vh!important;animation-name:join-rain-visible!important;animation-timing-function:linear!important;animation-fill-mode:both!important;transform:none!important}
+@keyframes join-rain-visible{0%{transform:translateY(-4vh);opacity:0}5%{opacity:1}92%{opacity:1}100%{transform:translateY(125vh);opacity:0}}
+
+/* 狀態欄永遠置頂、保持純藍無文字；選單由狀態欄下方開始 */
+.site > .status{position:relative!important;z-index:30010!important;height:30px!important;background:#2048fa!important;color:transparent!important;pointer-events:none!important;}
+.site > .menu{top:30px!important;padding-top:42px!important;z-index:20001!important;}
+.site > .menu-shade{top:30px!important;z-index:20000!important;}
+/* 下雨圖層不受 site overflow、CSS 重複覆蓋影響 */
+#join-rain-overlay{position:fixed!important;inset:30px 0 0!important;z-index:25000!important;pointer-events:none!important;overflow:hidden!important;display:block!important;}
+#join-rain-overlay .join-rain-particle{position:absolute!important;display:block!important;max-width:none!important;height:auto!important;object-fit:contain!important;opacity:1!important;filter:drop-shadow(0 2px 1px rgba(0,95,145,.12));} 
+
+/* 2026-11-19: 1號上移10px、順時針額外10度；3號以原63%寬度放大為126% */
+.home .hero-area > img.tissue.t1 {
+  top:calc(-8% - 10px)!important;
+  transform:rotate(-8deg)!important;
+}
+.home .hero-area > img.tissue.t3 {
+  width:75.6%!important; /* 原尺寸63% × 1.2 */
+}
+
+/* 3號紙球：維持原尺寸、角度與垂直位置，僅向左移動10px */
+.home .hero-area > img.tissue.t3 { left:calc(-6% - 35px)!important; }
+
+/* 3號紙球再往左10px：累計相對原定位左移30px? 現行 -35px 再減10px */
+.home .hero-area > img.tissue.t3 { left:calc(-6% - 45px)!important; }
+
+/* 1號紙球在目前 -8deg 基礎上再順時針15度 */
+.home .hero-area > img.tissue.t1 { transform:rotate(7deg)!important; }
+
+/* 暱稱頁：與首頁同樣一屏顯示、同樣黃色底紋；僅調整此頁 */
+.site:has(.nickname.active){
+  height:100svh!important;
+  min-height:100svh!important;
+  background:#ffff91 url('sujie/底紋.png') center 30px / 100% auto repeat-y!important;
+  overflow:hidden!important;
+}
+.site:has(.nickname.active) .nickname.active{
+  display:flex!important;
+  flex-direction:column!important;
+  height:calc(100svh - 82px)!important;
+  min-height:0!important;
+  padding:0 7%!important;
+  overflow:hidden!important;
+  background:transparent!important;
+}
+.nickname.active h2{flex:none!important;font-size:clamp(27px,8vw,35px)!important;margin:0 0 10px!important;line-height:1.2!important}
+.nickname.active label{flex:none!important;font-size:12px!important;margin-bottom:5px!important}
+.nickname.active .nick-row{flex:none!important;gap:7px!important}
+.nickname.active .nick-row input{height:43px!important;font-size:17px!important;padding:0 12px!important}
+.nickname.active .nick-row button{font-size:15px!important;padding:0 12px!important}
+.nickname.active .nick-actions{flex:none!important;margin-top:17px!important;gap:10px!important}
+.nickname.active .nick-actions button{height:43px!important;font-size:16px!important}
+.nickname.active .decor{
+  flex:1 1 0!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:18px -8% 0!important;
+  overflow:hidden!important;
+}
+@media(max-width:390px){
+  .site:has(.nickname.active) .nickname.active{height:calc(100svh - 78px)!important}
+}
+
+/* 暱稱頁新版：使用使用者提供的五張紙球圖，不再顯示舊留言裝飾 */
+.nickname.active .decor.decor-new{position:relative!important;flex:1 1 0!important;min-height:0!important;height:auto!important;width:calc(100% + 16%)!important;margin:18px -8% 0!important;overflow:hidden!important;}
+.nickname.active .decor.decor-new .nick-ball{position:absolute!important;display:block!important;max-width:none!important;height:auto!important;object-fit:contain!important;filter:drop-shadow(3px 6px 5px rgba(30,35,35,.22));}
+/* 以參考圖為準：左上、右上、中間、左下、右下，適度裁出畫面邊緣 */
+.nickname.active .decor.decor-new .nb1{width:52.5%!important;left:2%!important;top:2%!important;transform:none!important;}
+.nickname.active .decor.decor-new .nb2{width:58%!important;right:-17%!important;top:18%!important;transform:none!important;}
+.nickname.active .decor.decor-new .nb3{width:35%!important;left:44%!important;top:50%!important;transform:none!important;}
+.nickname.active .decor.decor-new .nb4{width:65%!important;left:-22%!important;top:66%!important;transform:none!important;}
+.nickname.active .decor.decor-new .nb5{width:56%!important;right:-22%!important;top:82%!important;transform:none!important;}
+
+#join-rain-overlay .join-rain-particle{opacity:initial!important;}
+
+/* 暱稱頁五顆紙球尺寸／位置微調（2026-11-19） */
+.nickname.active .decor.decor-new .nb1{width:70%!important;}
+.nickname.active .decor.decor-new .nb2{width:87%!important;}
+.nickname.active .decor.decor-new .nb3{width:52.5%!important;}
+.nickname.active .decor.decor-new .nb4{width:97.5%!important;}
+.nickname.active .decor.decor-new .nb5{top:calc(82% - 20px)!important;}
+
+/* 暱稱頁純 FOOT 底色；轉場不改動首頁排版。 */
+.site:has(.nickname.active){background:#fff45b!important;background-image:none!important;}
+.site:has(.nickname.active) .nickname.active{background:#fff45b!important;background-image:none!important;}
+/* 只對下一頁設絕對定位，不改首頁 flex、高度、紙球或 FOOT。 */
+.site.join-page-sliding{overflow:hidden!important;}
+.site.join-page-sliding #nickname.active{
+  position:absolute!important;
+  z-index:5!important;
+  left:0!important;
+  width:100%!important;
+  height:calc(100svh - 82px)!important;
+  min-height:0!important;
+  top:82px!important;
+  margin:0!important;
+  padding:0 7%!important;
+  box-sizing:border-box!important;
+  background:#fff45b!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+@media(max-width:390px){.site.join-page-sliding #nickname.active{top:78px!important;height:calc(100svh - 78px)!important;}}
+
+/* 轉場時不能因預先啟用暱稱頁而改掉首頁／頁首的背景。 */
+.site.join-page-sliding:has(.nickname.active){
+  background:#ffff91 url('sujie/底紋.png') center 30px / 100% auto repeat-y!important;
+}
+/* 頁首始終沿用首頁定位；不隨頁面切換改變內距、大小。 */
+.site > .header{height:52px!important;padding:4px 6%!important;flex-shrink:0!important;}
+.site > .header .logo{width:72px!important;height:41px!important;}
+.site > .header .hamburger{width:32px!important;}
+@media(max-width:390px){.site > .header{height:48px!important;}}
+
+/* 轉場接縫修正：下一頁的純黃底延伸到頁首後方，滑動中不露出錯色間隙。
+   LOGO 與選單是 .site 的共用 header，不為各頁重設位置。 */
+.site.join-page-sliding #home.active{z-index:2!important;}
+.site.join-page-sliding #nickname.active{
+  top:0!important;
+  height:100svh!important;
+  padding-top:82px!important;
+  background:#fff45b!important;
+  z-index:1!important;
+}
+@media(max-width:390px){
+  .site.join-page-sliding #nickname.active{top:0!important;height:100svh!important;padding-top:78px!important;}
+}
+.site > .header{position:relative!important;z-index:10!important;}
+
+/* 2026-11-19: Keep the exact home header coordinates across ALL pages and transition states. */
+.site > .header{padding-left:8px!important;padding-right:8px!important;box-sizing:border-box!important;}
+
+/* 暱稱頁紙球位置微調：只移動 2、3、4 號，其他維持不變 */
+.nickname.active .decor.decor-new .nb2{right:calc(-17% - 20px)!important;}
+.nickname.active .decor.decor-new .nb3{left:calc(44% - 20px)!important;}
+.nickname.active .decor.decor-new .nb4{top:calc(66% - 30px)!important;}
+
+/* 2026-11-19: nickname ball 1 +20% and left 20px; ball 3 -20% and up 30px. */
+.nickname.active .decor.decor-new .nb1{width:84%!important;left:calc(2% - 20px)!important;}
+.nickname.active .decor.decor-new .nb3{width:42%!important;top:calc(50% - 30px)!important;}
+
+/* 暱稱頁最新紙球微調：僅更動 1、2、3 號，不旋轉圖片 */
+.nickname.active .decor.decor-new .nb1{left:calc(2% - 50px)!important;top:calc(2% - 10px)!important;}
+.nickname.active .decor.decor-new .nb2{right:calc(-17% - 30px)!important;}
+.nickname.active .decor.decor-new .nb3{width:50.4%!important;left:calc(44% - 30px)!important;}
+
+/* 2026-11-19: nickname page only — ball 1 up another 30px, ball 2 right another 20px. */
+.nickname.active .decor.decor-new .nb1{top:calc(2% - 40px)!important;}
+.nickname.active .decor.decor-new .nb2{right:calc(-17% - 50px)!important;}
+
+/* 本次僅調整暱稱頁紙球：3 左 10px、2 上 20px、4 上 30px、5 左 30px */
+.nickname.active .decor.decor-new .nb3{left:calc(44% - 40px)!important;}
+.nickname.active .decor.decor-new .nb2{top:calc(18% - 20px)!important;}
+.nickname.active .decor.decor-new .nb4{top:calc(66% - 60px)!important;}
+.nickname.active .decor.decor-new .nb5{right:calc(-22% + 30px)!important;}
+
+/* 暱稱頁：4 號縮小 20%，5 號放大 50%；其他設定保持不變 */
+.nickname.active .decor.decor-new .nb4{width:78%!important;}
+.nickname.active .decor.decor-new .nb5{width:84%!important;}
+
+/* 暱稱頁：5 號紙球從上一版上移 30px、右移 10px */
+.nickname.active .decor.decor-new .nb5{top:calc(82% - 50px)!important;right:calc(-22% + 20px)!important;}
+
+/* 本次僅調整暱稱頁紙球 4、5 */
+.nickname.active .decor.decor-new .nb4{width:85.8%!important;}
+.nickname.active .decor.decor-new .nb5{right:calc(-22% + 0px)!important;}
+
+/* 暱稱頁本次微調：3 上10px、4 上10px、5 上20px右20px；其他不變 */
+.nickname.active .decor.decor-new .nb3{top:calc(50% - 40px)!important;}
+.nickname.active .decor.decor-new .nb4{top:calc(66% - 70px)!important;}
+.nickname.active .decor.decor-new .nb5{top:calc(82% - 70px)!important;right:calc(-22% - 20px)!important;}
+
+/* 遊戲頁：依照第二張示意圖，純色黃色背景、白色遊戲板及時間／分數。 */
+#thread.thread.active{display:block!important;position:relative!important;height:calc(100svh - 82px)!important;min-height:0!important;padding:8px 22px 22px!important;background:#fff45b!important;overflow:hidden!important;isolation:isolate}
+#thread .game-backdrop{position:absolute;inset:0;z-index:0;pointer-events:none}
+#thread .gb{position:absolute;width:48%;max-width:none!important;height:auto;filter:drop-shadow(1px 3px 2px #0002)}
+#thread .gb1{top:-8%;left:-27%;width:53%}
+#thread .gb2{top:8%;right:-29%;width:65%}
+#thread .gb3{top:38%;left:-35%;width:66%}
+#thread .gb4{top:64%;right:-35%;width:67%}
+#thread .gb5{bottom:-11%;left:-24%;width:62%}
+#thread .game-board{position:relative;z-index:1;width:100%;height:100%;background:#fff;border-radius:3px;overflow:hidden}
+#thread .game-hud{display:flex;align-items:center;justify-content:space-between;padding:10px 11px 0;color:#0034b4;font-family:Arial,sans-serif;font-size:12px;font-weight:bold}
+#thread .game-hud strong{font-size:16px;font-weight:400;color:#c9272f}
+#thread .game-hud small{font-size:10px}
+#thread .game-ball{position:absolute;width:43%;height:auto;max-width:none;bottom:12px;left:50%;transform:translateX(-50%);object-fit:contain}
+#thread .thread-legacy[hidden]{display:none!important}
+
+/* 遊戲頁統一使用使用者指定的 FOOT 黃 #fff45b；只影響遊戲頁，不改首頁。 */
+.site:has(#thread.active):not(.join-page-sliding){background:#fff45b!important;background-image:none!important;}
+#thread.thread.active{background:#fff45b!important;}
+/* 暱稱→遊戲：完全沿用首頁→暱稱的平移和同步下雨，固定兩頁接縫。 */
+.site.game-page-sliding{background:#fff45b!important;background-image:none!important;}
+.site.game-page-sliding #nickname.active{position:relative!important;z-index:2!important;}
+.site.game-page-sliding #thread.active{
+ position:absolute!important;top:0!important;left:0!important;width:100%!important;
+ height:100svh!important;min-height:0!important;z-index:1!important;
+ padding:90px 22px 22px!important;background:#fff45b!important;
+ box-sizing:border-box!important;
+}
+@media(max-width:390px){.site.game-page-sliding #thread.active{padding-top:86px!important;}}
+/* Nickname to game: identical destination geometry before/after transition. */
+.site.game-page-sliding #thread.thread.active{position:absolute!important;top:82px!important;left:0!important;width:100%!important;height:calc(100svh - 82px)!important;min-height:0!important;padding:8px 22px 22px!important;margin:0!important;box-sizing:border-box!important;display:block!important;overflow:hidden!important;background:#fff45b!important}
+@media(max-width:390px){.site.game-page-sliding #thread.thread.active{top:78px!important;height:calc(100svh - 78px)!important}}
+.site.game-page-sliding #nickname.active{height:calc(100svh - 82px)!important;min-height:0!important;flex-shrink:0!important}
+@media(max-width:390px){.site.game-page-sliding #nickname.active{height:calc(100svh - 78px)!important}}
+
+/* 2026-11-19: nickname → game, two pages share ONE fixed viewport slot.
+   Both are removed from document flow before target is activated: no downward push.
+   Translate precisely one slot height: source disappears completely. */
+.site.game-page-sliding > main{position:relative!important; height:calc(100svh - 82px)!important;overflow:hidden!important;}
+.site.game-page-sliding #nickname.active,
+.site.game-page-sliding #thread.thread.active{
+  position:absolute!important;top:0!important;left:0!important;right:0!important;
+  width:100%!important;height:100%!important;min-height:0!important;
+  margin:0!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+.site.game-page-sliding #nickname.active{z-index:2!important;}
+.site.game-page-sliding #thread.thread.active{
+  z-index:1!important;display:block!important;
+  padding:8px 22px 22px!important;background:#fff45b!important;
+}
+@media(max-width:390px){
+ .site.game-page-sliding > main{height:calc(100svh - 78px)!important;}
+ .site.game-page-sliding #nickname.active,
+ .site.game-page-sliding #thread.thread.active{top:0!important;height:100%!important;}
+}
+
+/* Game screen: same viewport slot during and after transition. Keep the original
+   upward slide and rain animation; only normalize the final layout. */
+.site.game-page-sliding > main,
+.site.game-page-settled > main{
+  position:relative!important;
+  height:calc(100svh - 82px)!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+.site.game-page-settled #thread.thread.active,
+.site.game-page-sliding #thread.thread.active{
+  position:absolute!important;
+  top:0!important;left:0!important;right:0!important;
+  width:100%!important;height:100%!important;min-height:0!important;
+  margin:0!important;padding:8px 22px 22px!important;
+  box-sizing:border-box!important;overflow:hidden!important;
+  background:#fff45b!important;
+}
+.site.game-page-settled{
+  height:100svh!important;min-height:0!important;overflow:hidden!important;
+  background:#fff45b!important;background-image:none!important;
+}
+@media(max-width:390px){
+  .site.game-page-sliding > main,
+  .site.game-page-settled > main{height:calc(100svh - 78px)!important;}
+}
+
+/* CRITICAL: base stylesheet uses main{display:contents}; a display:contents
+   element cannot be the positioning container for the animated pages.
+   Restore a real layout box for BOTH transition and settled game states. */
+.site.game-page-sliding > main,
+.site.game-page-settled > main{
+  display:block!important;
+  position:relative!important;
+  height:calc(100svh - 82px)!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+.site.game-page-sliding #nickname.active,
+.site.game-page-sliding #thread.thread.active,
+.site.game-page-settled #thread.thread.active{
+  top:0!important;
+}
+@media(max-width:390px){
+ .site.game-page-sliding > main,
+ .site.game-page-settled > main{height:calc(100svh - 78px)!important;}
+}
+
+/* Blue status strip belongs to the BODY measurement, not the image-only HEAD.
+   The visual top strip stays at the same coordinate, but game page transition
+   and settled geometry share a single content viewport. */
+.site.game-page-sliding > main,
+.site.game-page-settled > main{
+ display:block!important;position:relative!important;
+ height:calc(100svh - 82px)!important;min-height:0!important;
+ overflow:visible!important;
+}
+.site.game-page-sliding #nickname.active,
+.site.game-page-sliding #thread.thread.active,
+.site.game-page-settled #thread.thread.active{
+ position:absolute!important;top:0!important;left:0!important;
+ width:100%!important;height:100%!important;min-height:0!important;
+ margin:0!important;box-sizing:border-box!important;
+}
+.site.game-page-sliding #thread.thread.active,
+.site.game-page-settled #thread.thread.active{
+ padding:8px 22px 22px!important;overflow:hidden!important;
+}
+@media(max-width:390px){
+ .site.game-page-sliding > main,
+ .site.game-page-settled > main{height:calc(100svh - 78px)!important;}
+}
+
+/* Unified game viewport geometry: status color belongs to body paint, not to HEAD sizing. */
+.site.game-page-sliding > main,
+.site.game-page-settled > main {
+ display:block!important; position:relative!important;
+ height:calc(100svh - 82px)!important; min-height:0!important;
+ overflow:hidden!important;
+}
+.site.game-page-sliding #nickname.active,
+.site.game-page-sliding #thread.thread.active,
+.site.game-page-settled #thread.thread.active {
+ position:absolute!important; top:0!important; left:0!important;
+ width:100%!important; height:100%!important; min-height:0!important;
+ margin:0!important; box-sizing:border-box!important;
+}
+.site.game-page-sliding #thread.thread.active,
+.site.game-page-settled #thread.thread.active {
+ padding:8px 22px 22px!important; overflow:hidden!important;
+}
+@media(max-width:390px){
+ .site.game-page-sliding > main,.site.game-page-settled > main {height:calc(100svh - 78px)!important;}
+}
+
+/* Game surface extends behind the transparent 52px header.
+   The viewport slot and WAAPI travel distance are deliberately unchanged. */
+.site > .header { background:transparent!important; background-image:none!important; }
+.site.game-page-sliding > main,
+.site.game-page-settled > main { overflow:visible!important; }
+.site.game-page-sliding #thread.thread.active,
+.site.game-page-settled #thread.thread.active {
+  top:-52px!important;
+  height:calc(100% + 52px)!important;
+  padding:60px 22px 22px!important;
+  overflow:hidden!important;
+}
+
+/* During the nickname -> game slide, the game surface extends behind HEAD
+   but its extra 52px must not paint over the departing nickname page.
+   Clip only that extension while sliding; release it once settled. */
+.site.game-page-sliding #thread.thread.active {
+  clip-path: inset(52px 0 0 0)!important;
+}
+.site.game-page-settled #thread.thread.active {
+  clip-path: none!important;
+}
+
+
+/* Nickname -> game: tissue pile overlay, no page sliding. */
+.site{isolation:isolate}
+.tissue-fall-overlay{position:absolute;inset:0;z-index:1000;overflow:hidden;pointer-events:none;background:transparent}
+.tissue-fall-overlay .falling-tissue{position:absolute;display:block;max-width:none;object-fit:contain;will-change:transform,opacity;filter:drop-shadow(0 3px 3px rgba(40,40,40,.11))}
+/* No fade: the entire tissue pile exits below the viewport. */
