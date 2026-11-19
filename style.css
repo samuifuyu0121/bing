@@ -791,3 +791,260 @@ main{display:contents;}
     min-height:calc(100dvh - 78px)!important;
   }
 }
+
+/* 排行榜手機版：沿用全站 390px 畫布，商品圖依比例縮放，不裁切 */
+#ranking.ranking{padding-left:6%;padding-right:6%;padding-bottom:0;}
+#ranking .rank-box{height:clamp(340px,calc(100svh - 260px),440px);}
+#ranking .ranking-product-banner{display:block;height:auto;margin:16px calc(-6% / .88) 0;background:transparent;font-size:initial;line-height:0;overflow:hidden;}
+#ranking .ranking-product-banner img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;}
+
+/* 2026-11-20: Ranking fits one phone viewport, keeping the original header and full product image. */
+#ranking.ranking.active{
+  display:flex!important;flex-direction:column!important;
+  height:calc(100dvh - 78px)!important;min-height:0!important;
+  overflow:hidden!important;padding:0 6% 0!important;
+}
+#ranking.ranking h2{flex:0 0 auto;margin:0 0 7px!important;line-height:1.2!important;font-size:clamp(25px,7vw,35px)!important;}
+#ranking.ranking .rank-box{
+  flex:1 1 auto!important;min-height:48px!important;height:auto!important;
+  overflow-y:auto!important;overscroll-behavior:contain;
+}
+#ranking.ranking .ranking-product-banner{
+  flex:0 1 auto!important;width:calc(100% + 13.636%)!important;
+  max-height:min(46dvh,390px)!important;
+  aspect-ratio:1/1!important;height:auto!important;
+  margin:8px -6.818% 0!important;overflow:hidden!important;
+}
+#ranking.ranking .ranking-product-banner img{
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:100%!important;object-fit:contain!important;
+}
+@media(min-width:391px){#ranking.ranking.active{height:calc(100dvh - 82px)!important}}
+@media(max-height:620px){#ranking.ranking .ranking-product-banner{max-height:39dvh!important}#ranking.ranking h2{font-size:25px!important}}
+#thread .game-hud #gameCountdown{font-variant-numeric:tabular-nums;display:inline-block;min-width:2ch}
+#thread .game-hud span small{font-size:10px;margin-left:2px}
+
+/* 2026-11-20: HOME ONLY — restore responsive vertical positioning.
+   Keep existing x/y percentages, artwork, footer typography and transitions intact. */
+.site:has(#home.active):not(.join-page-sliding) #home.home.active {
+  height:calc(100dvh - 82px)!important;
+  min-height:0!important;
+  max-height:calc(100dvh - 82px)!important;
+  overflow:hidden!important;
+}
+.site:has(#home.active):not(.join-page-sliding) #home .hero-area {
+  flex:1 1 0%!important;
+  min-height:0!important;
+  height:auto!important;
+}
+.site:has(#home.active):not(.join-page-sliding) #home .home-footer {
+  flex:0 0 170px!important;
+  min-height:170px!important;
+  flex-grow:0!important;
+}
+@media(max-width:390px) {
+  .site:has(#home.active):not(.join-page-sliding) #home.home.active {
+    height:calc(100dvh - 78px)!important;
+    max-height:calc(100dvh - 78px)!important;
+  }
+}
+
+/* 2026-11-20: Ranking image replaces the previous list and product banner.
+   Cover the ranking viewport edge-to-edge at every phone width/height. */
+#ranking.ranking.active{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;
+  height:calc(100dvh - 82px)!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  background:#0876ac!important;
+}
+#ranking .ranking-full-image{
+  position:absolute;inset:0;width:100%;height:100%;overflow:hidden;
+}
+#ranking .ranking-full-image img{
+  display:block;width:100%;height:100%;max-width:none;
+  object-fit:cover;object-position:center center;
+}
+#ranking #rankBox[hidden]{display:none!important;}
+@media(max-width:390px){
+  #ranking.ranking.active{height:calc(100dvh - 78px)!important;}
+}
+
+/* Only ranking and results: no global/home/nickname layout changes. */
+#ranking.ranking.active{height:calc(100dvh - 82px)!important;min-height:0!important;}
+#ranking .ranking-full-image{inset:0!important;width:100%!important;height:100%!important;}
+#ranking .ranking-full-image img{width:100%!important;height:100%!important;max-width:none!important;object-fit:fill!important;object-position:center!important;}
+@media(max-width:390px){#ranking.ranking.active{height:calc(100dvh - 78px)!important;}}
+
+#result.result.active{
+ display:flex!important;flex-direction:column!important;
+ width:100%!important;height:calc(100dvh - 82px)!important;
+ min-height:0!important;max-height:calc(100dvh - 82px)!important;
+ padding:0 5% max(8px,env(safe-area-inset-bottom))!important;
+ overflow:hidden!important;
+}
+#result .result-pack{
+ flex:1 1 auto!important;min-height:0!important;
+ width:100%!important;max-width:390px!important;
+ height:auto!important;aspect-ratio:auto!important;
+ margin:0 auto!important;
+}
+#result .result-pack>img{
+ position:absolute!important;width:100%!important;height:100%!important;
+ left:0!important;top:0!important;max-width:none!important;
+ transform:none!important;object-fit:fill!important;
+}
+#result .result-copy{
+ top:29%!important;left:32%!important;width:36%!important;height:40%!important;
+ gap:clamp(1px,.4dvh,4px)!important;
+ font-size:clamp(8px,2.45vw,12px)!important;
+ line-height:1.18!important;justify-content:center!important;
+}
+#result .result-copy strong{font-size:clamp(15px,5vw,23px)!important;}
+#result .result-copy .qr{width:clamp(40px,12vw,65px)!important;height:clamp(40px,12vw,65px)!important;margin:2px auto 0!important;}
+#result .result-actions{
+ flex:0 0 auto!important;margin:5px 0 0!important;
+ gap:6px!important;
+}
+#result .result-actions button{padding:7px 4px!important;font-size:clamp(12px,3.7vw,16px)!important;}
+@media(max-width:390px){
+ #result.result.active{height:calc(100dvh - 78px)!important;max-height:calc(100dvh - 78px)!important;}
+}
+
+/* 2026-11-20 — ONLY ranking/result fixes. Keep source image aspect ratios. */
+.site:has(#ranking.active) > .status,
+.site:has(#ranking.active) > .header{display:none!important;}
+.site:has(#ranking.active) > main{display:block!important;height:100dvh!important;min-height:0!important;overflow:hidden!important;}
+#ranking.ranking.active{position:relative!important;display:block!important;width:100%!important;height:100dvh!important;min-height:0!important;max-height:100dvh!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#0876ac!important;}
+#ranking .ranking-full-image{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;overflow:hidden!important;display:flex!important;align-items:flex-end!important;justify-content:center!important;}
+#ranking .ranking-full-image img{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;object-fit:contain!important;object-position:center bottom!important;}
+/* The package asset is square with whitespace around a tall product.
+   Restore proportional 155%-wide image sizing instead of stretching it. */
+#result.result.active{align-items:center!important;}
+#result .result-pack{position:relative!important;flex:0 1 auto!important;width:min(100%, calc((100dvh - 185px) / 1.55))!important;max-width:390px!important;height:auto!important;aspect-ratio:1 / 1.55!important;margin:0 auto!important;overflow:hidden!important;}
+#result .result-pack>img{position:absolute!important;display:block!important;left:50%!important;top:50%!important;width:155%!important;height:auto!important;max-width:none!important;object-fit:contain!important;transform:translate(-50%,-50%)!important;}
+#result .result-copy{top:32%!important;left:34%!important;width:32%!important;height:39%!important;}
+#result .result-actions{width:100%!important;max-width:390px!important;}
+
+/* Ranking restoration only: preserve header/navigation, score frame, and undistorted banner. */
+.site:has(#ranking.active) > .status{display:flex!important;}
+.site:has(#ranking.active) > .header{display:flex!important;}
+.site:has(#ranking.active) > main{display:contents!important;height:auto!important;min-height:0!important;overflow:visible!important;}
+#ranking.ranking.active{
+  display:flex!important;flex-direction:column!important;
+  position:relative!important;width:100%!important;
+  height:calc(100dvh - 82px)!important;max-height:calc(100dvh - 82px)!important;
+  min-height:0!important;margin:0!important;padding:0!important;
+  overflow:hidden!important;background:#ffff91!important;
+}
+#ranking.ranking.active h2{
+  display:block!important;flex:0 0 auto!important;
+  position:relative!important;z-index:1!important;
+  margin:0!important;padding:6px 0 5px!important;
+  text-align:center!important;font-size:clamp(20px,5.8vw,27px)!important;
+  line-height:1.25!important;color:#e33b35!important;
+}
+#ranking.ranking.active #rankBox{
+  display:block!important;position:relative!important;z-index:1!important;
+  flex:1 1 54%!important;min-height:90px!important;
+  width:88%!important;height:auto!important;
+  margin:0 auto 8px!important;padding:10px!important;
+  border:2px solid #222!important;border-radius:6px!important;
+  background:#ffffe5!important;overflow-y:auto!important;
+}
+#ranking.ranking.active .ranking-full-image{
+  display:block!important;position:relative!important;z-index:0!important;
+  flex:1 1 46%!important;min-height:0!important;
+  inset:auto!important;width:100%!important;height:auto!important;
+  margin:0!important;overflow:hidden!important;background:#0876ac!important;
+}
+#ranking.ranking.active .ranking-full-image img{
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:none!important;object-fit:cover!important;
+  object-position:center center!important;
+}
+#ranking.ranking.active .empty-rank{margin:clamp(18px,7dvh,65px) auto 0!important;}
+@media(max-width:390px){
+ #ranking.ranking.active{height:calc(100dvh - 78px)!important;max-height:calc(100dvh - 78px)!important;}
+}
+
+/* 2026-11-20: ranking image must never crop at any aspect ratio. */
+#ranking.ranking.active .ranking-full-image{display:flex!important;align-items:flex-end!important;justify-content:center!important;background:#0876ac!important;}
+#ranking.ranking.active .ranking-full-image img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;}
+
+/* Exchange only: fit all content into the visible mobile viewport. */
+#exchange.exchange.active{
+ display:flex!important;flex-direction:column!important;
+ height:calc(100dvh - 82px)!important;min-height:0!important;
+ padding:clamp(4px,1.4dvh,12px) 7% clamp(7px,1.4dvh,14px)!important;
+ overflow:hidden!important;
+}
+#exchange.exchange.active h2{
+ flex:0 0 auto!important;font-size:clamp(22px,4.8dvh,36px)!important;
+ line-height:1.15!important;margin:0 0 clamp(6px,1.8dvh,18px)!important;
+}
+#exchange.exchange.active .exchange-card{
+ flex:1 1 auto!important;min-height:0!important;display:flex!important;
+ flex-direction:column!important;align-items:center!important;justify-content:space-evenly!important;
+ gap:clamp(2px,.7dvh,8px)!important;
+ padding:clamp(8px,2dvh,20px)!important;
+ line-height:1.45!important;overflow:hidden!important;
+}
+#exchange.exchange.active .exchange-card img{
+ flex:1 1 auto!important;min-height:0!important;
+ width:auto!important;max-width:min(70%,240px)!important;
+ height:auto!important;max-height:32%!important;
+ object-fit:contain!important;margin:0 auto!important;
+}
+#exchange.exchange.active .exchange-card h3{flex:0 0 auto!important;font-size:clamp(15px,2.9dvh,22px)!important;line-height:1.2!important;margin:0!important;}
+#exchange.exchange.active .exchange-card p{flex:0 0 auto!important;font-size:clamp(12px,2.1dvh,16px)!important;line-height:1.5!important;margin:0!important;}
+#exchange.exchange.active .exchange-card .note{font-size:clamp(10px,1.8dvh,13px)!important;}
+#exchange.exchange.active .exchange-card button{flex:0 0 auto!important;font-size:clamp(13px,2dvh,16px)!important;padding:clamp(7px,1.4dvh,12px) 24px!important;margin:0!important;}
+@media(max-width:390px){#exchange.exchange.active{height:calc(100dvh - 78px)!important;}}
+
+/* 2026-11-20: scoped adjustments requested by user. */
+#ranking.ranking.active #rankBox{margin-bottom:clamp(14px,2.4dvh,22px)!important;}
+#result .result-actions button#resultRanking{grid-column:span 2!important;}
+#exchange.exchange.active .exchange-card{justify-content:space-around!important;}
+
+/* Exchange page: preserve original single-image layout until a local completed record exists. */
+#exchange .exchange-product-row{display:flex;align-items:center;justify-content:center;width:100%;gap:clamp(6px,2vw,14px);min-height:0;flex:0 1 auto;}
+#exchange .exchange-product-row>img{min-width:0;max-width:100%;object-fit:contain;}
+#exchange .exchange-product-row.has-record>img{width:52%!important;max-width:52%!important;margin:0!important;}
+#exchange .exchange-qr-box{flex:0 0 43%;min-width:0;background:white;padding:4px;border-radius:4px;}
+#exchange .exchange-qr-box[hidden],#exchange .exchange-not-played[hidden]{display:none!important;}
+#exchange #exchangeQrImage svg{display:block;width:100%;height:auto;aspect-ratio:1;}
+#exchange .exchange-not-played{color:#bd282e;font-weight:bold;line-height:1.5!important;}
+
+/* Exchange only: completed-record product and QR occupy equal-sized squares. */
+#exchange .exchange-product-row.has-record{
+  width:100%;display:flex;justify-content:center;align-items:center;
+  gap:clamp(8px,2.5vw,14px);flex:0 0 auto;min-height:0;
+}
+#exchange.exchange.active .exchange-product-row.has-record>img,
+#exchange .exchange-product-row.has-record>.exchange-qr-box{
+  box-sizing:border-box!important;flex:0 1 auto!important;
+  width:min(43%,150px)!important;max-width:min(43%,150px)!important;
+  aspect-ratio:1/1!important;height:auto!important;max-height:none!important;
+  min-width:0!important;margin:0!important;
+}
+#exchange.exchange.active .exchange-product-row.has-record>img{
+  display:block!important;object-fit:contain!important;
+}
+#exchange .exchange-product-row.has-record>.exchange-qr-box{
+  display:flex;align-items:center;justify-content:center;padding:4px;
+}
+#exchange .exchange-product-row.has-record #exchangeQrImage{width:100%;height:100%;}
+#exchange .exchange-product-row.has-record #exchangeQrImage svg{width:100%;height:100%;}
+
+/* 2026-11-20: Exchange-only bottom breathing room and explicit record states. */
+#exchange.exchange.active{padding-bottom:clamp(18px,4dvh,34px)!important;}
+#exchange.exchange.active .exchange-card{flex:1 1 auto!important;min-height:0!important;}
+#exchange.exchange.active .exchange-product-row:not(.has-record){justify-content:center!important;}
+#exchange.exchange.active .exchange-product-row:not(.has-record)>img{width:auto!important;max-width:min(70%,240px)!important;max-height:100%!important;object-fit:contain!important;margin:0 auto!important;}
+#exchange.exchange.active .exchange-qr-box[hidden],#exchange.exchange.active .exchange-not-played[hidden]{display:none!important;}
+#exchange.exchange.active .exchange-not-played:not([hidden]){display:block!important;color:#bd282e!important;font-weight:700!important;}

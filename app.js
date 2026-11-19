@@ -1,7 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id);let nickname='不要醬紙',replyCount=0,selectedSticker=null,liked=false;const entries=[];
 function toast(s){$('toast').textContent=s;$('toast').classList.add('show');clearTimeout(window._toast);window._toast=setTimeout(()=>$('toast').classList.remove('show'),2100)}
-function page(id){document.querySelector('.site').classList.remove('game-page-settled');document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));closeMenu();window.scrollTo({top:0,behavior:'instant'});if(id==='ranking')renderRanking()}
+function page(id){if(id!=='thread')stopGameTimer();document.querySelector('.site').classList.remove('game-page-settled');document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));closeMenu();window.scrollTo({top:0,behavior:'instant'});if(id==='ranking')renderRanking();if(id==='exchange')renderExchangeRecord()}
 function closeMenu(){$('menu').classList.remove('open');$('menuShade').classList.remove('open')}
 document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>page(b.dataset.page)));
 $('menuBtn').onclick=()=>{$('menu').classList.add('open');$('menuShade').classList.add('open')};$('closeMenu').onclick=closeMenu;$('menuShade').onclick=closeMenu;
@@ -12,9 +12,35 @@ $('postLike').onclick=()=>{liked=!liked;$('postLike').innerHTML=(liked?'♥':'�
 document.querySelectorAll('[data-sticker]').forEach(b=>b.onclick=()=>{selectedSticker=b.dataset.sticker;document.querySelectorAll('[data-sticker]').forEach(x=>x.classList.toggle('selected',x===b));toast('已選擇貼圖 '+selectedSticker+'，可以送出回覆')});
 function sendReply(){const value=$('replyText').value.trim();if(!value&&!selectedSticker){toast('請輸入回覆或選擇貼圖');return}const el=document.createElement('div');el.className='reply';const avatar=document.createElement('span');avatar.className='avatar small';const content=document.createElement('div');const title=document.createElement('b');title.textContent=nickname;const stamp=document.createElement('small');stamp.textContent=' 剛剛';const p=document.createElement('p');p.textContent=value||'貼圖 '+selectedSticker;const meta=document.createElement('span');meta.textContent='♡ 0　▢ 0';content.append(title,stamp,p,meta);el.append(avatar,content);$('comments').append(el);$('replyText').value='';selectedSticker=null;document.querySelectorAll('.stickers button').forEach(b=>b.classList.remove('selected'));replyCount++;$('replyProgress').textContent=`完成 ${Math.min(replyCount,3)} / 3 次回覆`;$('finishBtn').disabled=replyCount<3;toast(replyCount>=3?'已達成挑戰，可以完成！':'回覆成功！')}
 $('sendReply').onclick=sendReply;$('replyText').addEventListener('keydown',e=>{if(e.key==='Enter')sendReply()});
-$('finishBtn').onclick=()=>{if(replyCount<3)return;const score=1000+replyCount*78;$('score').textContent=score+'分';entries.push({name:nickname,score});$('resultComments').innerHTML='';document.querySelectorAll('#comments>.reply').forEach(x=>$('resultComments').append(x.cloneNode(true)));page('result')};
+function completeGame(){
+  if(!gameTimerRunning)return;
+  stopGameTimer();
+  const score=1234+replyCount*78;
+  $('score').textContent=score+'分';
+  entries.push({name:nickname,score});
+  try{localStorage.setItem('sujieCompletedChallenge',JSON.stringify({name:nickname,score,completedAt:new Date().toISOString(),code:'SJ-'+Date.now().toString(36).toUpperCase()}))}catch(e){console.warn('遊玩紀錄無法儲存',e)}
+  $('resultComments').replaceChildren();
+  document.querySelectorAll('#comments>.reply').forEach(x=>$('resultComments').append(x.cloneNode(true)));
+  page('result');
+}
+$('finishBtn').onclick=()=>{if(replyCount>=3)completeGame()};
+let gameTimerRunning=false,gameTimerFrame=0,gameTimerEnd=0;
+function stopGameTimer(){gameTimerRunning=false;if(gameTimerFrame)cancelAnimationFrame(gameTimerFrame);gameTimerFrame=0}
+function startGameTimer(){
+  stopGameTimer();gameTimerRunning=true;gameTimerEnd=performance.now()+30000;
+  $('gameCountdown').textContent='30';
+  const tick=()=>{
+    if(!gameTimerRunning)return;
+    const remaining=Math.max(0,Math.ceil((gameTimerEnd-performance.now())/1000));
+    $('gameCountdown').textContent=String(remaining);
+    if(remaining===0){completeGame();return}
+    gameTimerFrame=requestAnimationFrame(tick);
+  };
+  gameTimerFrame=requestAnimationFrame(tick);
+}
+
 function renderRanking(){const box=$('rankBox');box.replaceChildren();if(!entries.length){const p=document.createElement('p');p.className='empty-rank';p.innerHTML='目前尚無挑戰紀錄<br>完成挑戰後會顯示在這裡';box.append(p);return}entries.slice().sort((a,b)=>b.score-a.score).forEach((e,i)=>{const row=document.createElement('div');row.className='rank-item';const name=document.createElement('span');name.textContent=`${i+1}. ${e.name}`;const score=document.createElement('b');score.textContent=e.score+'分';row.append(name,score);box.append(row)})}
-$('adPrev').onclick=$('adNext').onclick=()=>toast('廣告內容尚未提供');
+// 排行榜改用商品圖片，舊廣告切換按鈕已移除；不再綁定不存在的元素。
 $('replay').onclick=()=>page('nickname');$('saveResult').onclick=()=>{toast('可使用手機截圖儲存此畫面')};$('shareResult').onclick=()=>{const message=`我在舒潔水啦挑戰拿到 ${$('score').textContent}！`;const url='https://www.threads.net/intent/post?text='+encodeURIComponent(message);window.open(url,'_blank','noopener,noreferrer')};
 
 // Only the nickname -> game transition uses falling tissues; home -> nickname remains untouched.
@@ -22,6 +48,7 @@ let tissuePileTransitioning=false;
 function runTissuePileTransition(button){
   if(tissuePileTransitioning)return;
   tissuePileTransitioning=true;
+  stopGameTimer();
   button.classList.add('is-pressed');
   const site=document.querySelector('.site');
   const rect=site.getBoundingClientRect();
@@ -101,6 +128,7 @@ function runTissuePileTransition(button){
     site.classList.add('game-page-settled');
     document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='thread'));
     closeMenu();
+    startGameTimer();
     Promise.all(exits.map(a=>a.finished.catch(()=>{}))).then(()=>{
       [...animations,...exits].forEach(a=>a.cancel());
       layer.remove();
@@ -201,3 +229,41 @@ function runPageRainSlide(sourceId,targetId,button){
 }
 if(joinButton){joinButton.addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();runPageRainSlide('home','nickname',joinButton)},true)}
 document.querySelectorAll('.home-footer [data-footer]').forEach(button=>button.addEventListener('click',()=>toast(button.dataset.footer+'：頁面尚未提供')));
+
+// 兌換頁只依本裝置已完成的遊玩紀錄顯示 QR；不影響其他頁面。
+function renderExchangeRecord(){
+  const row=$('exchangeProductRow'),box=$('exchangeQrBox'),target=$('exchangeQrImage'),empty=$('exchangeNotPlayed');
+  if(!row||!box||!target||!empty)return;
+  let record=null;
+  try{
+    const saved=localStorage.getItem('sujieCompletedChallenge');
+    if(saved)record=JSON.parse(saved);
+  }catch(e){console.warn('讀取遊玩紀錄失敗',e)}
+  // Only a challenge completed on this browser counts. A nickname or visiting the page does not.
+  // 測試未遊玩畫面：網址加 ?previewExchange=unplayed；不清除既有紀錄。
+  const previewUnplayed=new URLSearchParams(window.location.search).get('previewExchange')==='unplayed';
+  const valid=!previewUnplayed && !!(record && typeof record==='object' && Number.isFinite(record.score)
+    && typeof record.completedAt==='string' && !Number.isNaN(Date.parse(record.completedAt))
+    && typeof record.code==='string' && record.code.startsWith('SJ-'));
+  const challengeButton=document.querySelector('#exchange .exchange-card button[data-page="nickname"]');
+  const showUnplayed=()=>{
+    row.classList.remove('has-record');box.hidden=true;empty.hidden=false;
+    target.replaceChildren();
+    if(challengeButton)challengeButton.textContent='前往挑戰';
+  };
+  if(!valid){showUnplayed();return;}
+  try{
+    const payload=JSON.stringify({type:'sujie-challenge',code:record.code,name:record.name,score:record.score,completedAt:record.completedAt});
+    const qr=new window.SujieQRCode(-1,0);qr.addData(payload);qr.make();
+    const n=qr.getModuleCount(),quiet=4,svgNS='http://www.w3.org/2000/svg';
+    const svg=document.createElementNS(svgNS,'svg');svg.setAttribute('viewBox',`0 0 ${n+quiet*2} ${n+quiet*2}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','挑戰完成紀錄 QR Code');
+    const bg=document.createElementNS(svgNS,'rect');bg.setAttribute('width','100%');bg.setAttribute('height','100%');bg.setAttribute('fill','#fff');svg.append(bg);
+    for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(qr.isDark(y,x)){
+      const r=document.createElementNS(svgNS,'rect');r.setAttribute('x',x+quiet);r.setAttribute('y',y+quiet);
+      r.setAttribute('width',1);r.setAttribute('height',1);r.setAttribute('fill','#000');svg.append(r);
+    }
+    target.replaceChildren(svg);
+    row.classList.add('has-record');box.hidden=false;empty.hidden=true;
+    if(challengeButton)challengeButton.textContent='再次挑戰';
+  }catch(e){console.error('QR 產生失敗',e);showUnplayed()}
+}
